@@ -1,0 +1,7 @@
+/target/
+/node_modules/
+/dist/
+/dist-electron/
+/.direnv/
+/result
+*.umbra-tmp

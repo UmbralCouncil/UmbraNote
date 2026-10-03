@@ -1,0 +1,39 @@
+{
+  "name": "umbra-note",
+  "version": "0.2.0",
+  "private": true,
+  "description": "A local-first Markdown notebook with live preview",
+  "main": "dist-electron/main.cjs",
+  "scripts": {
+    "dev": "concurrently -k \"vite\" \"npm:dev:electron\"",
+    "dev:electron": "npm run build:electron && wait-on tcp:5173 && cross-env VITE_DEV_SERVER_URL=http://localhost:5173 node scripts/electron-runtime.mjs .",
+    "build:electron": "esbuild electron/main.ts electron/preload.ts --bundle --platform=node --format=cjs --external:electron --outdir=dist-electron --out-extension:.js=.cjs",
+    "build": "npm run typecheck && vite build && npm run build:electron",
+    "start": "node scripts/electron-runtime.mjs .",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@codemirror/commands": "^6.10.0",
+    "@codemirror/lang-markdown": "^6.3.4",
+    "@codemirror/language": "^6.11.3",
+    "@codemirror/language-data": "^6.5.2",
+    "@codemirror/state": "^6.5.2",
+    "@codemirror/view": "^6.38.6",
+    "@lezer/highlight": "^1.2.1",
+    "@lezer/markdown": "^1.6.3",
+    "solid-js": "^1.9.9"
+  },
+  "devDependencies": {
+    "@types/node": "^24.7.2",
+    "concurrently": "^9.2.1",
+    "cross-env": "^10.1.0",
+    "electron": "^38.2.2",
+    "esbuild": "^0.25.10",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.10",
+    "vite-plugin-solid": "^2.11.8",
+    "vitest": "^3.2.4",
+    "wait-on": "^8.0.4"
+  }
+}
