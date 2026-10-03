@@ -99,5 +99,3 @@ The renderer has no direct Node.js access. Filesystem operations live in `electr
 - Renaming updates the title sidecar and filename without modifying headings or other Markdown content.
 - Packaging into an installable system artifact is not configured yet; development and production builds run through the supplied Nix shell.
 - Annotations, collaboration, backlinks, wiki links, synchronization, and CRDT support remain deliberately deferred.
-
-The previous Rust/Floem prototype remains in the repository temporarily for reference while the TypeScript rebuild reaches feature parity. It is not the active application.

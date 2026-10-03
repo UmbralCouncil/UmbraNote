@@ -5,3 +5,4 @@
 /.direnv/
 /result
 *.umbra-tmp
+*result*
