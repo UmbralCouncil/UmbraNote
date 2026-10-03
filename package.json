@@ -1,6 +1,6 @@
 {
   "name": "umbra-note",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "description": "A local-first Markdown notebook with live preview",
   "main": "dist-electron/main.cjs",
