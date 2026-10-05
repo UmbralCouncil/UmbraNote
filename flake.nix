@@ -13,7 +13,7 @@
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-        version = "0.0.2";
+        version = "0.0.3";
         app = pkgs.stdenvNoCC.mkDerivation {
           pname = "umbra-note";
           inherit version;
