@@ -172,6 +172,12 @@ function createWindow(): void {
       sandbox: true,
     },
   });
+  window.webContents.on("did-fail-load", (_event, code, description, url) => {
+    console.error(`Renderer failed to load ${url}: ${code} ${description}`);
+  });
+  window.webContents.on("render-process-gone", (_event, details) => {
+    console.error(`Renderer process exited: ${details.reason} (${details.exitCode})`);
+  });
   window.setMenuBarVisibility(false);
   const developmentUrl = process.env.VITE_DEV_SERVER_URL;
   if (developmentUrl) void window.loadURL(developmentUrl);

@@ -13,7 +13,7 @@
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-        version = "0.0.3";
+        version = "0.0.4";
         app = pkgs.stdenvNoCC.mkDerivation {
           pname = "umbra-note";
           inherit version;
@@ -69,10 +69,11 @@
             # electron-unwrapped and the release archive must contain the
             # runtime rather than a dangling Nix-store link.
             cp -RL ${pkgs.electron}/libexec/electron "$out/lib/umbra-note/electron"
+            test -x "$out/lib/umbra-note/electron/chrome-sandbox"
             cat > $out/bin/umbra-note <<'SH'
             #!/bin/sh
             root="$(CDPATH= cd -- "$(dirname -- "$0")/../lib/umbra-note" && pwd)"
-            exec "$root/electron/electron" "$root/app" "$@"
+            exec "$root/electron/electron" "$@" "$root/app"
             SH
             chmod 0555 $out/bin/umbra-note
             install -Dm444 assets/note.png \
